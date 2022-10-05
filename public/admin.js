@@ -7,12 +7,33 @@ let list = document.querySelector('#book-list');
 let newHTML = '<ul>';
 data.forEach(book => {
     newHTML += `
-    <li>${book.id}: ${book.title} (${book.year})</li>
+    <li>
+    ${book.id}: ${book.title} (${book.year}) 
+    <input id = "new-qty-${book.id}" type = "number" value = "${book.quantity}">
+    <button class = "update-button" id = "update-${book.id}">Update</button>
+    </li>
     `
    })
 
    newHTML += '</ul>'
    list.innerHTML = newHTML;
+
+   document.querySelectorAll('.update-button').forEach(button => {
+    button.addEventListener('click', async () => {
+        let id = button.id.replace(/\D/g, '');
+        let value = document.querySelector(`new-qty-${id}`).value;
+        await fetch ('http://localhost:3001/updateBook', {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: id,
+            quantity: value,
+        })
+    })
+    })
+   })
 }
 
 async function assignId() {
