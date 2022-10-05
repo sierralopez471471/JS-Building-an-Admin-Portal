@@ -1,5 +1,19 @@
 let addButton = document.querySelector('#add-book');
+let deleteButton = document.querySelector('#delete-book');
+async function renderBooks() {
+let response = await fetch('http://localhost:3001/listBooks');
+let data = await response.json();
+let list = document.querySelector('#book-list');
+let newHTML = '<ul>';
+data.forEach(book => {
+    newHTML += `
+    <li>${book.id}: ${book.title} (${book.year})</li>
+    `
+   })
 
+   newHTML += '</ul>'
+   list.innerHTML = newHTML;
+}
 
 async function assignId() {
 let newId = 0;
@@ -40,31 +54,25 @@ addButton.addEventListener('click', async () => {
         document.querySelector('#add-description').value = '';
         document.querySelector('#add-quantity').value = '';
         document.querySelector('#add-imgURL').value = '';
-
+    
+        await renderBooks();
 })
 
+deleteButton.addEventListener('click', async () => {
+    let bookId = document.querySelector('#delete-id').value;
 
-// async function main() {
-// let response = await fetch('http://localhost:3001/listBooks', {
-//     method: "GET",
-//     headers: null,
-//     body: null
-// })
+    
+    await fetch (`http://localhost:3001/removeBook/${bookId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        document.querySelector('#delete-id').value = '';
+    
+        await renderBooks();
+})
+renderBooks();
 
-// let books = await response.json();
-// console.log(books);
-// }
 
-// let response = await fetch('http://localhost:9001/updateBook', {
-//     method:"PATCH", 
-//     headers: { 
-//         'Content-Type': 'application/json'
-//     }, 
-//     body: JSON.stringify({ 
-//         "id": 3, 
-//         "title": "Legends of Arathrae", 
-//     }) 
-// }); 
-// let updatedBook = await response.json(); 
-// console.log(updateBook)
 // // Your Code Here

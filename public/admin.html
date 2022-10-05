@@ -9,7 +9,10 @@
 
 <body>
    <div id="root" class = "container">
-       <h1>Add books</h1>
+    <h1>Admin Portal</h1>    
+    <h2>List of Books</h2>
+        <div id = "book-list"></div>
+        <h2>Add books</h2>
 
        <label class = "form-label" for = "add-title">Title</label>
        <input class = "form-control mb-3" id = "add-title" type = "text" name = "title">
@@ -27,6 +30,11 @@
        <input class = "form-control mb-3" id = "add-imgURL" type = "text" name = "imgURL">
        
        <button id = "add-book">Add Book</button>
+    
+    <h2 class = "mt-4">Delete A Book</h2>
+    <input class = "form-control mb-3" id = "delete-id" type = "number">
+    <button id = "delete-book">Delete Book</button>
+
     </div>
     <!-- Our JavaScript Code  -->
     <script src="admin.js"></script>
