@@ -8,9 +8,26 @@
 </head>
 
 <body>
-   <div id="root">
+   <div id="root" class = "container">
+       <h1>Add books</h1>
+
+       <label class = "form-label" for = "add-title">Title</label>
+       <input class = "form-control mb-3" id = "add-title" type = "text" name = "title">
+
+       <label class = "form-label" for = "add-year">Year</label>
+       <input class = "form-control mb-3" id = "add-year" type = "text" name = "year">
+
+       <label class = "form-label" for = "add-description">Description</label>
+       <input class = "form-control mb-3" id = "add-description" type = "text" name = "description">
+
+       <label class = "form-label" for = "add-quantity">Quantity</label>
+       <input class = "form-control mb-3" id = "add-quantity" type = "number" name = "quantity">
+
+       <label class = "form-label" for = "add-imgURL">imgURL</label>
+       <input class = "form-control mb-3" id = "add-imgURL" type = "text" name = "imgURL">
        
-   </div>
+       <button id = "add-book">Add Book</button>
+    </div>
     <!-- Our JavaScript Code  -->
     <script src="admin.js"></script>
 </body>
